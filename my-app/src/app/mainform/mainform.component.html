@@ -1,0 +1,31 @@
+<!-- mainform.component.html -->
+<div>
+  <h2>Form 1 Data</h2>
+  <pre>{{ formData1 | json }}</pre>
+</div>
+
+<div>
+  <h2>Form 2 Data</h2>
+  <pre>{{ formData2 | json }}</pre>
+</div>
+
+
+<!-- mainform.component.html -->
+<div>
+  <app-form1>
+    <!-- Project the div with input type="text" into Form1Component -->
+    <ng-container app-form1-inputText>
+      <div class="">
+        <label>name</label>
+        <input type="text">
+      </div>
+    </ng-container>
+  </app-form1>
+
+  <!-- Second div with input type="email" -->
+  <div class="">
+    <label>email</label>
+    <input type="email">
+  </div>
+</div>
+s

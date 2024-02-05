@@ -1,0 +1,13 @@
+<!-- form2.component.html -->
+<form (submit)="submitFormm()">
+  <!-- Your form fields here -->
+  <div>
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="mobile" [(ngModel)]="formData.phone" required />
+  </div>
+
+  <!-- Other form fields if any -->
+
+  <!-- Submit button -->
+  <button type="submit">Submit</button>
+</form>

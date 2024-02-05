@@ -1,0 +1,46 @@
+<h3 class="text-center p-5">{{form.formTitle}}</h3>
+<form [formGroup]="dynamicFormGroup" class="row g-4 border p-3">
+
+
+  <!-- Loop through form controls -->
+  <ng-container *ngFor="let control of form.formControls">
+    <div *ngIf="['text', 'email', 'password', 'number', 'date'].includes(control.type)" [class]="control?.class">
+      <label for="{{control.name}}" class="form-label">{{control.label}}</label>
+      <input formControlName="{{control?.name}}" [type]="control?.type" class="form-control">
+      <small *ngIf="dynamicFormGroup.get(control.name)?.invalid" class="text-danger">{{getValidationError(control)}}
+      </small>
+    </div>
+
+    <div *ngIf="control.type === 'select'"  [class]="control.class">
+      <label for="{{control.name}}" class="form-label">{{control.label}}</label>
+      <select formControlName="{{control?.name}}" class="form-select" aria-label="Default select example">
+        <option selected value="">Choose....</option>
+        <option value="1">One</option>
+        <ng-container *ngFor="let opt of control.options">
+          <option [value]="opt.month">{{opt.month}}</option>
+        </ng-container>
+      </select>
+    </div>
+    <div  *ngIf="control.type === 'radio'" [class]="control.class">
+      <label>{{control?.label}}</label>
+      <ng-container *ngFor="let row of control.radioOptions">
+        <div class="form-check">
+          <input formControlName="{{control?.name}}" [value]="row" class="form-check-input" type="radio">
+          <label class="form-check-label" [for]="control?.name"></label>
+          {{row}}
+        </div>
+      </ng-container>
+    </div>
+
+
+    <!-- Implement rendering for other control types: select and radio -->
+
+
+  </ng-container>
+
+
+  <div class="col-12">
+    <button (click)="onSubmit()" type="button" class="btn btn-primary mx-2">{{form.saveBtnTitle}}</button>
+    <button (click)="resetForm()" type="button" class="btn btn-secondary mx-2">{{form.resetBtnTitle}}</button>
+  </div>
+</form>
